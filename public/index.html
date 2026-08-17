@@ -4,33 +4,53 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0b0c0f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>家庭車機中心</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <main class="display-shell">
     <header>
       <div>
-        <div class="eyebrow">FAMILY DRIVE</div>
+        <div class="eyebrow">FAMILY DRIVE · REALTIME</div>
         <h1>我們家</h1>
       </div>
-      <div id="clock" class="clock">--:--</div>
+      <div class="head-right">
+        <div id="connection" class="connection">連線中</div>
+        <div id="clock" class="clock">--:--</div>
+      </div>
     </header>
 
-    <section id="preview" class="preview hidden">本機預覽模式 · 部署到 Cloudflare 後會自動連接 LINE 家庭提醒</section>
-    <section id="offline" class="offline hidden">目前離線，恢復網路後會自動同步</section>
+    <section id="preview" class="preview hidden">本機預覽模式 · 部署後會使用 WebSocket 即時同步</section>
+    <section id="offline" class="offline hidden">即時連線暫時中斷，系統正在自動重連</section>
     <section id="setup" class="setup hidden">
       <h2>第一次設定</h2>
       <p>請在網址後加入 <code>?key=你的DASHBOARD_KEY</code> 開啟一次。成功後金鑰會儲存在這台瀏覽器，網址會自動清除。</p>
     </section>
 
+    <section id="pickupSection" class="dashboard-section hidden">
+      <div class="section-title"><span>🚸 今日接送</span><span id="pickupCount" class="count"></span></div>
+      <div id="pickupTasks" class="tasks"></div>
+    </section>
+
+    <section id="homeSection" class="dashboard-section hidden">
+      <div class="section-title"><span>🏠 到家前</span><span id="homeCount" class="count"></span></div>
+      <div id="homeTasks" class="tasks"></div>
+    </section>
+
+    <section id="generalSection" class="dashboard-section hidden">
+      <div class="section-title"><span>🔔 家庭提醒</span><span id="generalCount" class="count"></span></div>
+      <div id="generalTasks" class="tasks"></div>
+    </section>
+
     <section id="hero" class="hero">
       <div class="empty-icon">🏠</div>
       <h2>目前沒有新的家庭提醒</h2>
-      <p>家人在 LINE 傳「車車 訊息」後，會自動顯示在這裡。</p>
+      <p>家人在 LINE 傳「車車 訊息」後，會即時顯示在這裡。</p>
     </section>
 
-    <section id="tasks" class="tasks" aria-live="polite"></section>
     <footer>行車顯示模式 · 僅供查看 · 請勿於行駛中操作螢幕</footer>
   </main>
   <script src="./app.js"></script>
