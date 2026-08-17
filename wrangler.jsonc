@@ -6,7 +6,7 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*", "/webhook"]
+    "run_worker_first": ["/api/*", "/webhook", "/ws"]
   },
   "d1_databases": [
     {
@@ -14,5 +14,22 @@
       "database_name": "tesla-family-center-db",
       "database_id": "8e1c2178-c9fd-4fb5-bcb3-08c0f7ef87a1"
     }
-  ]
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "REALTIME",
+        "class_name": "RealtimeHub"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v2-realtime",
+      "new_sqlite_classes": ["RealtimeHub"]
+    }
+  ],
+  "triggers": {
+    "crons": ["* * * * *"]
+  }
 }
