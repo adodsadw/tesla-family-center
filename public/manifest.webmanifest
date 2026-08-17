@@ -1,0 +1,10 @@
+{
+  "name": "家庭車機中心",
+  "short_name": "家庭車機",
+  "start_url": "/manage.html",
+  "display": "standalone",
+  "background_color": "#0b0c0f",
+  "theme_color": "#0b0c0f",
+  "lang": "zh-Hant",
+  "description": "LINE × Tesla 家庭提醒與停車管理中心"
+}
